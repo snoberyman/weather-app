@@ -1,3 +1,25 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary-charcoal: #364156;
+    --primary-blue: #212D40;
+    --primary-orange: #D66853;
+    --primary-rose: #7D4E57;
+  }
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: "Nanum Gothic", serif;
+  color: white;
+  background-color: var(--primary-charcoal);
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
