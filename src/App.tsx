@@ -1,14 +1,13 @@
-// import './App.css'
+import Header from "./components/header/header";
+import MainInput from "./features/mainInput/mainInput";
 
 function App() {
-
   return (
     <>
-      <div>
-        <h1 className="">Hello World!</h1>
-      </div>
+      <Header />
+      <MainInput />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
