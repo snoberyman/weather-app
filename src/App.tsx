@@ -1,13 +1,15 @@
 import Header from "./components/header/header";
 import MainInput from "./features/mainInput/mainInput";
 
-function App() {
+const App = () => {
   return (
     <>
       <Header />
-      <MainInput />
+      <div className="flex items-center justify-center h-full">
+        <MainInput />
+      </div>
     </>
   );
-}
+};
 
 export default App;

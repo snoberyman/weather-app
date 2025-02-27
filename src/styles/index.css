@@ -1,13 +1,11 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --primary-charcoal: #364156;
-    --primary-blue: #212d40;
-    --primary-orange: #d66853;
-    --primary-rose: #7d4e57;
-    --primary-black: #11151c;
-  }
+@theme {
+  --color-primary-charcoal: #364156;
+  --color-primary-blue: #212d40;
+  --color-primary-orange: #d66853;
+  --color-primary-rose: #7d4e57;
+  --color-primary-black: #11151c;
 }
 
 body {
@@ -17,7 +15,7 @@ body {
   min-height: 100vh;
   font-family: "Nanum Gothic", serif;
   color: white;
-  background-color: var(--primary-charcoal);
+  background-color: var(--color-primary-charcoal);
 }
 
 /* :root {
