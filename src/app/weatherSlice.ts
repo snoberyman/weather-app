@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WeatherData, Current, Location, Forecast } from "../types/weatherTypes";
 
-// Define the initial state using your interfaces
+// Defining the initial state using type interfaces
 const initialState: WeatherData = {
   current: {
     temp_c: null,

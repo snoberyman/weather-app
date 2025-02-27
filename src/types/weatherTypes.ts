@@ -1,13 +1,14 @@
+// data types for the weather API response
 export interface Current {
-  temp_c: number | null;
-  condition: {
+  temp_c: number | null; // The current temperature in Celsius
+  condition: { // The current weather condition
     text: string;
   };
 }
 
 export interface Location {
-  name: string;
-  country: string;
+  name: string; // The name of the location
+  country: string;  // The country of the location
 }
 
 interface ForecastDay {

@@ -1,28 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setCurrent, setLocation, setForecast } from "../weatherSlice"; // import weather redux slice
+import { setCurrent, setLocation, setForecast } from "../../app/weatherSlice"; // import weather redux slice
 import { WeatherData } from "../../types/weatherTypes"; // Import the weather data interface (types)
 
 import axios from "axios";
 
-const MainInput = () => {
+const MainInput = ({ fontLoaded }: { fontLoaded: boolean }) => {
   const weatherAPI = import.meta.env.VITE_WEATHER_URL;
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const dispatch = useDispatch();
 
+  const [loaded, setLoaded] = useState(false); // sates to wait for fonts to be loaded before enabling transition
   const [inputValue, setInputValue] = useState<string>(""); // state to capture input field value
-  const [isCalled, setIsCalled] = useState(false); // state to check if API called once
+  const [isCalled, setIsCalled] = useState(false); // state to check if API has been called once
+
+  useEffect(() => {
+    // Delay transition effect by 500ms to allow fonts to load
+    const timeoutId = setTimeout(() => {
+      setLoaded(true); // Enable transition after delay
+    }, 500);
+    // Cleanup timeout on component unmount
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   // capture input field value
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-
-  // const removeClass = () => {
-  //   setinitialTranslate((prev) =>
-  //     prev.replace("md:translate-y-20 lg:translate-y-40", "transition: transform 0.5s ease-out; ").trim()
-  //   );
-  // };
 
   const handleAddTodo = () => {
     // Fetch weather data from the API
@@ -62,9 +66,15 @@ const MainInput = () => {
     setInputValue(""); // Reset the input field
   };
 
+  if (!fontLoaded) {
+    return <div></div>; // Show loading text until fonts are ready
+  }
+
   return (
     <div
-      className={`transform transition-all duration-500 ease-out bg-primary-orange  rounded flex  items-center  shadow-sm shadow-black${
+      className={`${
+        loaded ? "transform transition-all duration-500 ease-out" : ""
+      }  bg-primary-orange  rounded flex  items-center  shadow-sm shadow-black${
         isCalled
           ? "sm:py-8 sm:px-12  md:py-8 md:px-20 flex max-sm:flex-col sm-flex-col md:flex-row  md:translate-y-0 lg:translate-y-0 max-sm:py-15 max-sm:px-15 "
           : "md:translate-y-20 lg:translate-y-40 py-15 px-15 flex flex-col"
