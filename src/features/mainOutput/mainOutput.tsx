@@ -5,9 +5,45 @@ const MainOutput = () => {
   // const weather = useSelector((state: RootState) => state.weather);
 
   return (
-    <div className="mt-10">
-      {/* <h1>temprature: {weather.current?.temp_c}</h1>
-      <h1>forecast: {weather.forecast.forecastday[1].day.avgtemp_c}</h1> */}
+    <div className="  mt-30 mb-50 bg-primary-blue w-[70vw] h-96 border-2 border-white grid grid-cols-[3fr_1fr] grid-rows-3 gap-4 p-4">
+      {/* Row 1: Location and Date Info */}
+      <div className="flex flex-row justify-between col-start-1 row-start-1">
+        <div className="flex flex-col text-left">
+          <h2 className="text-xl">Vancouver</h2>
+          <h4 className="text-lg">British Columbia, Canada</h4>
+        </div>
+        <div className="flex flex-col text-right">
+          <h2 className="text-xl">2025-02-25</h2>
+          <h4 className="text-lg">02:00 PM</h4>
+        </div>
+      </div>
+
+      {/* Row 2: Weather Info */}
+      <div className="flex flex-row justify-between col-start-1 row-start-2">
+        <div className="flex flex-col text-left">
+          <h2 className="text-xl">Weather</h2>
+          <h4 className="text-lg">10°C, Cloudy</h4>
+        </div>
+        <div className="flex flex-col text-right">
+          <h2 className="text-xl">Wind</h2>
+          <h4 className="text-lg">15 km/h</h4>
+        </div>
+      </div>
+
+      {/* Row 3: Extra Info */}
+      <div className="flex flex-row justify-between col-start-1 row-start-3">
+        <div className="flex flex-col text-left">
+          <h2 className="text-xl">Humidity</h2>
+          <h4 className="text-lg">80%</h4>
+        </div>
+        <div className="flex flex-col text-right">
+          <h2 className="text-xl">UV Index</h2>
+          <h4 className="text-lg">2 (Low)</h4>
+        </div>
+      </div>
+
+      {/* Right Column: Map */}
+      <div className="bg-white h-full w-full col-start-2 row-span-3"></div>
     </div>
   );
 };
