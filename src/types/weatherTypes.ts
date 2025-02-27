@@ -17,7 +17,7 @@ interface ForecastDay {
   };
 }
 
-interface Forecast {
+export interface Forecast {
   forecastday: [ForecastDay, ForecastDay, ForecastDay]; // A tuple with exactly 3 forecast days
 }
 
