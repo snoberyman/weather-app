@@ -1,11 +1,13 @@
 // import { useSelector } from "react-redux";
 // import { RootState } from "../../app/store"; // Adjust path based on your project structure
+import WeatherBoxSmall from '../../components/weatherBox/weatherBoxSmall'
+import WeatherBoxLarge from '../../components/weatherBox/weatherBoxLarge';
 
 const MainOutput = () => {
   // const weather = useSelector((state: RootState) => state.weather);
 
   return (
-    <div className="  mt-30 mb-50 bg-primary-blue w-[70vw] h-96 border-2 border-white grid grid-cols-[3fr_1fr] grid-rows-3 gap-4 p-4">
+    <div className="  mt-30 mb-50 bg-primary-blue w-[60vw] h-96 border-2 border-white grid grid-cols-[3fr_1fr] grid-rows-3 gap-4 p-4">
       {/* Row 1: Location and Date Info */}
       <div className="flex flex-row justify-between col-start-1 row-start-1">
         <div className="flex flex-col text-left">
@@ -19,26 +21,31 @@ const MainOutput = () => {
       </div>
 
       {/* Row 2: Weather Info */}
-      <div className="flex flex-row justify-between col-start-1 row-start-2">
-        <div className="flex flex-col text-left">
-          <h2 className="text-xl">Weather</h2>
-          <h4 className="text-lg">10°C, Cloudy</h4>
+      <div className="flex flex-row justify-around col-start-1 row-start-2">
+        <div className="flex flex-col ">
+          <WeatherBoxSmall />
         </div>
-        <div className="flex flex-col text-right">
-          <h2 className="text-xl">Wind</h2>
-          <h4 className="text-lg">15 km/h</h4>
+        <div className="flex flex-col">
+          <WeatherBoxLarge />
+        </div>
+        <div className="flex flex-col">
+          <WeatherBoxLarge />
         </div>
       </div>
 
       {/* Row 3: Extra Info */}
-      <div className="flex flex-row justify-between col-start-1 row-start-3">
-        <div className="flex flex-col text-left">
-          <h2 className="text-xl">Humidity</h2>
-          <h4 className="text-lg">80%</h4>
+      <div className="flex flex-row justify-around col-start-1 row-start-3">
+        <div className="flex flex-col ">
+          <WeatherBoxSmall />
         </div>
-        <div className="flex flex-col text-right">
-          <h2 className="text-xl">UV Index</h2>
-          <h4 className="text-lg">2 (Low)</h4>
+        <div className="flex flex-col ">
+          <WeatherBoxSmall />
+        </div>
+        <div className="flex flex-col ">
+          <WeatherBoxSmall />
+        </div>
+        <div className="flex flex-col ">
+          <WeatherBoxSmall />
         </div>
       </div>
 
