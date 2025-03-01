@@ -4,7 +4,7 @@ import WeatherBoxSmall from "../../components/weatherBox/weatherBoxSmall";
 import WeatherBoxLarge from "../../components/weatherBox/weatherBoxLarge";
 import Map from "../../components/weatherBox/map";
 
-const MainOutput = () => {
+const MainOutput = ({ isCalled }: { isCalled: boolean }) => {
   const weather = useSelector((state: RootState) => state.weather);
 
   const localtime = weather.location.localtime;
@@ -18,7 +18,11 @@ const MainOutput = () => {
   time = `${formattedHour}:${minute} ${period}`;
 
   return (
-    <div className="max-sm:mt-15 max-sm:mb-25 mt-30 mb-50 bg-primary-blue w-[60vw] max-sm:w-[80vw] h-auto border-2 border-white grid grid-cols-1 xl:grid-cols-[3fr_1fr] grid-rows-[auto_auto_auto] gap-10 p-8 justify-between ">
+    <div
+      className={` ${
+        isCalled ? "visible opacity-100" : "invisible opacity-0"
+      }   transition-opacity duration-2000 ease-out   max-sm:mt-15  max-sm:mb-25 mt-30 mb-50 bg-primary-blue w-[60vw] max-sm:w-[80vw] h-auto border-2 border-white grid grid-cols-1 xl:grid-cols-[3fr_1fr] grid-rows-[auto_auto_auto] gap-10 p-8 justify-between `}
+    >
       {/* Location and date info */}
       <div className="grid grid-cols-2 grid-rows-1 gap-4 col-start-1 row-start-1 ">
         <div className="flex flex-col text-left ">

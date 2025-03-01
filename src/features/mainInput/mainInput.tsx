@@ -9,9 +9,11 @@ import WeatherButton from "../../components/weatherInput/weatherButton";
 
 interface MainInputProps {
   fontLoaded: boolean;
+  isCalled: boolean;
+  setIsCalled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function MainInput({ fontLoaded }: MainInputProps) {
+function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
   const weatherAPI = import.meta.env.VITE_WEATHER_URL;
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const dispatch = useDispatch();
@@ -19,7 +21,6 @@ function MainInput({ fontLoaded }: MainInputProps) {
   const [loaded, setLoaded] = useState<boolean>(false); // sates to wait for fonts to be loaded before enabling transition
   const [inputValue, setInputValue] = useState<string>(""); // state to capture input field value
   const [isValid, setIsValid] = useState<boolean>(true); // state to track input validity
-  const [isCalled, setIsCalled] = useState<boolean>(false); // state to check if API has been called once
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false); // state to track button clicks
   const [isError, setIsError] = useState<boolean>(false); // state to track button clicks
 
@@ -75,7 +76,7 @@ function MainInput({ fontLoaded }: MainInputProps) {
           setIsError(false); // Reset error state
           console.log(response.data);
           const { current, location, forecast } = response.data;
-          console.log(forecast);
+
           // Dispatch the current weather data to redux store
           dispatch(
             setCurrent({
@@ -102,8 +103,11 @@ function MainInput({ fontLoaded }: MainInputProps) {
           dispatch(setForecast({ forecastday: forecast.forecastday }));
         });
     } catch (error) {
-      console.error("Error fetching weather data:", error);
-      setIsError(true);
+      if (axios.isAxiosError(error) && error.response?.status === 400) {
+        // Handle specific error case
+        setIsError(true);
+      }
+      // console.error("Error fetching weather data:", error);
     } finally {
       // Reset the button clicked state and input value after the request completes
       setIsButtonClicked(false);

@@ -12,7 +12,7 @@ const Map = ({
           title="map"
           width="100%"
           height="100%"
-          src={`https://maps.google.com/maps?q=${latitude},${longitude}&z=10&output=embed`}
+          src={`https://maps.google.com/maps?q=${latitude},${longitude}&z=10&t=k&output=embed`}
         ></iframe>
       </div>
     </>
