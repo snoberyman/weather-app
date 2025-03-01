@@ -13,6 +13,8 @@ export interface Location {
   country: string;  // The country of the location
   region: string; // The region of the location
   localtime: string // local time epoch
+  lon: number | null;
+  lat: number | null;
 }
 
 

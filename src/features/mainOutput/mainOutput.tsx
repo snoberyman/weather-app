@@ -2,12 +2,20 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import WeatherBoxSmall from "../../components/weatherBox/weatherBoxSmall";
 import WeatherBoxLarge from "../../components/weatherBox/weatherBoxLarge";
-import TempBox from "../../components/weatherBox/tempBox";
+import Map from "../../components/weatherBox/map";
 
 const MainOutput = () => {
   const weather = useSelector((state: RootState) => state.weather);
+
   const localtime = weather.location.localtime;
-  const [date, time] = localtime.split(" ");
+  const dateTime = localtime?.split(" "); // get date and time
+  const date = dateTime[0];
+  let time = dateTime[1] || "00:00"; // set default time to 00:00
+
+  const [hour, minute] = time.split(":").map(Number); // get hour and minute
+  const period = hour >= 12 ? "PM" : "AM"; // set AM or PM
+  const formattedHour = hour % 12 || 12; // Convert 0 to 12
+  time = `${formattedHour}:${minute} ${period}`;
 
   return (
     <div className="max-sm:mt-15 max-sm:mb-25 mt-30 mb-50 bg-primary-blue w-[60vw] max-sm:w-[80vw] h-auto border-2 border-white grid grid-cols-1 xl:grid-cols-[3fr_1fr] grid-rows-[auto_auto_auto] gap-10 p-8 justify-between ">
@@ -28,10 +36,16 @@ const MainOutput = () => {
       {/* Main weather info */}
       <div className=" items-start grid xl:grid-cols-[1fr_2fr_2fr] gap-20 col-start-1 row-start-2 ">
         <div className="flex flex-col ">
-          <TempBox tempValue={weather.current.temp_c} />
+          <WeatherBoxSmall
+            title={"Current temp."}
+            temp={weather.current.temp_c}
+          />
         </div>
         <div className="flex flex-col ">
-          <WeatherBoxLarge text={weather.current.condition.text} icon={weather.current.condition.icon} />
+          <WeatherBoxLarge
+            text={weather.current.condition.text}
+            icon={weather.current.condition.icon}
+          />
         </div>
         <div className="flex flex-col ">
           <WeatherBoxLarge percentage={weather.current.humidity} />
@@ -40,20 +54,34 @@ const MainOutput = () => {
       {/* Hourly temperature Info */}
       <div className="grid grid-cols-2 xl:grid-cols-4  gap-20 col-start-1 row-start-3 ">
         <div className="flex flex-col">
-          <WeatherBoxSmall time={"06 AM"} hourlyTemp={weather.forecast.forecastday[0].hour[6].temp_c} />
+          <WeatherBoxSmall
+            title={"Temp @ 06 AM"}
+            temp={weather?.forecast?.forecastday[0]?.hour[6]?.temp_c}
+          />
         </div>
         <div className="flex flex-col">
-          <WeatherBoxSmall time={"12 PM"} hourlyTemp={weather.forecast.forecastday[0].hour[12].temp_c} />
+          <WeatherBoxSmall
+            title={"Temp @ 12 PM"}
+            temp={weather?.forecast?.forecastday[0]?.hour[12]?.temp_c}
+          />
         </div>
         <div className="flex flex-col">
-          <WeatherBoxSmall time={"03 PM"} hourlyTemp={weather.forecast.forecastday[0].hour[15].temp_c} />
+          <WeatherBoxSmall
+            title={"Temp @ 03 PM"}
+            temp={weather?.forecast?.forecastday[0]?.hour[15]?.temp_c}
+          />
         </div>
         <div className="flex flex-col">
-          <WeatherBoxSmall time={"07 PM"} hourlyTemp={weather.forecast.forecastday[0].hour[19].temp_c} />
+          <WeatherBoxSmall
+            title={"Temp @ 07 PM"}
+            temp={weather?.forecast?.forecastday[0]?.hour[19]?.temp_c}
+          />
         </div>
       </div>
       {/* Map */}
-      <div className="bg-white h-60 xl:h-full w-full col-start-1 xl:col-start-2 row-span-3"></div>
+      <div className=" col-start-1 xl:col-start-2 row-span-3">
+        <Map latitude={weather.location.lat} longitude={weather.location.lon} />
+      </div>
     </div>
   );
 };

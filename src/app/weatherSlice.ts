@@ -16,6 +16,8 @@ const initialState: WeatherData = {
     country: '',
     region: '',
     localtime: '',
+    lon: null,
+    lat: null,
   },
   forecast: {
     forecastday: [{ date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }],

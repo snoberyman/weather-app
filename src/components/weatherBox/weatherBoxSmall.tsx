@@ -1,9 +1,18 @@
-const weatherBoxSmall = ({ time, hourlyTemp }: { time: string, hourlyTemp: number | null }) => {
+const weatherBoxSmall = ({
+  title,
+  temp,
+}: {
+  title: string;
+  temp: number | null;
+}) => {
   return (
     <>
-      <div className="bg-primary-rose border-1 border-white text-lg/8  p-2 max-sm:text-md text-center flex flex-col justify-center items-center">
-        <div className="">{time}</div>
-        <div className="">{hourlyTemp}°C</div>
+      <div className="bg-primary-rose border-1 border-white  p-2 max-sm:text-md text-center flex flex-col justify-center items-center">
+        <div className="text-xs">{title}</div>
+        <div className="text-lg/10 font-bold">
+          {" "}
+          {temp ? temp + "°C" : "N/A"}{" "}
+        </div>
       </div>
     </>
   );
