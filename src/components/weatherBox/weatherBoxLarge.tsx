@@ -1,7 +1,7 @@
 const WeatherBoxLarge = () => {
   return (
     <>
-      <div className="bg-primary-rose border-1 border-white  text-xl/18 text-center">
+      <div className="bg-primary-rose border-1 border-white  text-lg/18 max-sm:text-md text-center">
         test
       </div>
     </>

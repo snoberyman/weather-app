@@ -1,8 +1,9 @@
 const weatherBoxSmall = () => {
   return (
     <>
-      <div className="bg-primary-rose border-1 border-white  text-xl/18 text-center">
-        test
+      <div className="bg-primary-rose border-1 border-white text-lg/8  p-2 max-sm:text-md text-center flex flex-col justify-center items-center">
+        <div className="">hour</div>
+        <div className="">18</div>
       </div>
     </>
   );

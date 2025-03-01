@@ -85,7 +85,11 @@ function MainInput({ fontLoaded }: MainInputProps) {
           );
           // Dispatch the location data to redux store
           dispatch(
-            setLocation({ name: location.name, country: location.country })
+            setLocation({
+              name: location.name,
+              country: location.country,
+              region: location.region,
+            })
           );
           // Dispatch the forecast data (next 3 days) to redux store
           dispatch(setForecast({ forecastday: forecast.forecastday }));
@@ -121,7 +125,11 @@ function MainInput({ fontLoaded }: MainInputProps) {
         isButtonClicked={isButtonClicked}
       />
       <WeatherButton isValid={isValid} callAPI={callAPI} />
-      <span className="text-red-900 mt-4 text-xs max-sm:max-w-[160px] w-50 text-center md:ml-4 absolute max-sm:bottom-4 sm:bottom-10 sm:w-full">
+      <span
+        className={`text-red-900 mt-4 text-xs max-sm:max-w-[160px] w-50 text-center md:ml-4 absolute sm:w-full max-sm:bottom-4 ${
+          isCalled ? " sm:bottom-2 sm:left-0" : " sm:bottom-10"
+        }`}
+      >
         {isError ? "Something went wrong. \n Please enter a valid input." : ""}
       </span>
     </div>

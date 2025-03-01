@@ -9,6 +9,7 @@ export interface Current {
 export interface Location {
   name: string; // The name of the location
   country: string;  // The country of the location
+  region: string; // The region of the location
 }
 
 interface ForecastDay {
