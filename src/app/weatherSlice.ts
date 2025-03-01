@@ -5,17 +5,20 @@ import { WeatherData, Current, Location, Forecast } from "../types/weatherTypes"
 const initialState: WeatherData = {
   current: {
     temp_c: null,
+    humidity: null,
     condition: {
       text: '',
+      icon: '',
     },
   },
   location: {
     name: '',
     country: '',
     region: '',
+    localtime: '',
   },
   forecast: {
-    forecastday: [{ date: '', day: { avgtemp_c: 0 } }, { date: '', day: { avgtemp_c: 0 } }, { date: '', day: { avgtemp_c: 0 } }],
+    forecastday: [{ date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }],
   },
 };
 
