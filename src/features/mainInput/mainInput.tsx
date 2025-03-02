@@ -81,6 +81,7 @@ function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
           dispatch(
             setCurrent({
               temp_c: current.temp_c,
+              temp_f: current.temp_f,
               humidity: current.humidity,
               condition: {
                 text: current.condition.text,

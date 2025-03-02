@@ -28,10 +28,17 @@ function RainGraph({ isCalled }: { isCalled: boolean }) {
       style: { fontSize: "20px", fontWeight: "bold" },
     },
     xaxis: {
-      title: { text: "Hour of the Day" },
+      title: {
+        text: "Hour of the Day",
+        style: { fontWeight: "normal", fontSize: "16px" },
+      },
       categories: Array.from({ length: 24 }, (_, i) => `${i}:00`), // 24-hour labels
     },
     yaxis: {
+      title: {
+        text: "Day of the Week",
+        style: { fontWeight: "normal", fontSize: "16px" },
+      },
       labels: { show: true },
     },
     dataLabels: { enabled: false },
@@ -53,7 +60,19 @@ function RainGraph({ isCalled }: { isCalled: boolean }) {
       {
         breakpoint: 768,
         options: {
-          title: { style: { fontSize: "18px" } },
+          title: { style: { fontSize: "18px", fontWeight: "normal" } },
+          xaxis: {
+            title: {
+              text: "Hour of the Day",
+              style: { fontWeight: "normal", fontSize: "12px" },
+            },
+          },
+          yaxis: {
+            title: {
+              text: "Day of the Week",
+              style: { fontWeight: "normal", fontSize: "12px" },
+            },
+          },
         },
       },
       {
@@ -93,7 +112,7 @@ function RainGraph({ isCalled }: { isCalled: boolean }) {
           height={350}
         />
         <button
-          className="bg-primary-blue text-white p-2 m-2 absolute top-6 max-sm:top-0 max-sm:text-xs rounded-md cursor-pointer text-sm text-left"
+          className="bg-primary-blue text-white p-2 m-2 absolute top-6 max-sm:top-0 max-sm:hidden  max-sm:text-xs rounded-md cursor-pointer text-sm text-left"
           data-tooltip-id="info-tooltip"
           data-tooltip-content={tooltipContent}
           data-tooltip-place="bottom"

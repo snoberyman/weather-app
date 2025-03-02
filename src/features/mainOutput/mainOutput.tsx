@@ -5,7 +5,13 @@ import WeatherBoxSmall from "../../components/weatherBox/weatherBoxSmall";
 import WeatherBoxLarge from "../../components/weatherBox/weatherBoxLarge";
 import Map from "../../components/weatherBox/map";
 
-const MainOutput = ({ isCalled }: { isCalled: boolean }) => {
+const MainOutput = ({
+  isCalled,
+  unitSystem,
+}: {
+  isCalled: boolean;
+  unitSystem: string;
+}) => {
   const weather = useSelector((state: RootState) => state.weather);
 
   const localtime = weather.location.localtime;
@@ -42,7 +48,11 @@ const MainOutput = ({ isCalled }: { isCalled: boolean }) => {
           <div className="flex flex-col ">
             <WeatherBoxSmall
               title={"Current temp."}
-              temp={weather.current.temp_c}
+              temp={
+                unitSystem === "Metric"
+                  ? weather.current.temp_c + "°C"
+                  : weather.current.temp_f + "°F"
+              }
             />
           </div>
           <div className="flex flex-col ">
@@ -60,25 +70,41 @@ const MainOutput = ({ isCalled }: { isCalled: boolean }) => {
           <div className="flex flex-col">
             <WeatherBoxSmall
               title={"Temp @ 06 AM"}
-              temp={weather?.forecast?.forecastday[0]?.hour[6]?.temp_c}
+              temp={
+                unitSystem === "Metric"
+                  ? weather?.forecast?.forecastday[0]?.hour[6]?.temp_c + "°C"
+                  : weather?.forecast?.forecastday[0]?.hour[6]?.temp_f + "°F"
+              }
             />
           </div>
           <div className="flex flex-col">
             <WeatherBoxSmall
               title={"Temp @ 12 PM"}
-              temp={weather?.forecast?.forecastday[0]?.hour[12]?.temp_c}
+              temp={
+                unitSystem === "Metric"
+                  ? weather?.forecast?.forecastday[0]?.hour[12]?.temp_c + "°C"
+                  : weather?.forecast?.forecastday[0]?.hour[12]?.temp_f + "°F"
+              }
             />
           </div>
           <div className="flex flex-col">
             <WeatherBoxSmall
               title={"Temp @ 03 PM"}
-              temp={weather?.forecast?.forecastday[0]?.hour[15]?.temp_c}
+              temp={
+                unitSystem === "Metric"
+                  ? weather?.forecast?.forecastday[0]?.hour[15]?.temp_c + "°C"
+                  : weather?.forecast?.forecastday[0]?.hour[15]?.temp_f + "°F"
+              }
             />
           </div>
           <div className="flex flex-col">
             <WeatherBoxSmall
               title={"Temp @ 07 PM"}
-              temp={weather?.forecast?.forecastday[0]?.hour[19]?.temp_c}
+              temp={
+                unitSystem === "Metric"
+                  ? weather?.forecast?.forecastday[0]?.hour[15]?.temp_c + "°C"
+                  : weather?.forecast?.forecastday[0]?.hour[15]?.temp_f + "°F"
+              }
             />
           </div>
         </div>

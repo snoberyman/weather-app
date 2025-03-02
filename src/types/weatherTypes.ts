@@ -1,6 +1,7 @@
 // data types for the weather API response
 export interface Current {
   temp_c: number | null; // The current temperature in Celsius
+  temp_f: number | null; // The current temperature in Fahrenheit
   humidity: number | null
   condition: { // The current weather condition
     text: string;
@@ -21,8 +22,11 @@ export interface HourData {
   // Define the structure of an hour object
   time: string;
   temp_c: number | null;
+  temp_f: number | null;
   precip_mm: number | null;
+  percip_in: number | null;
   wind_kph: number | null;
+  wind_mph: number | null;
 }
 
 export interface ForecastDay {

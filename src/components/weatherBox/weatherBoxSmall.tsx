@@ -3,16 +3,13 @@ const weatherBoxSmall = ({
   temp,
 }: {
   title: string;
-  temp: number | null;
+  temp: number | null | string;
 }) => {
   return (
     <>
       <div className="bg-primary-rose border-1 border-white  p-2 max-sm:text-md text-center flex flex-col justify-center items-center">
         <div className="text-xs">{title}</div>
-        <div className="text-lg/10 font-bold">
-          {" "}
-          {temp ? temp + "°C" : "N/A"}{" "}
-        </div>
+        <div className="text-lg/10 font-bold"> {temp ? temp + "" : "N/A"} </div>
       </div>
     </>
   );

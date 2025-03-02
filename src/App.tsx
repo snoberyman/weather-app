@@ -5,12 +5,13 @@ import MainInput from "./features/mainInput/mainInput";
 import MainOutpt from "./features/mainOutput/mainOutput";
 import RainGraph from "./features/rainGraph/rainGraph";
 import WindGraph from "./features/windGraph/windGraph";
-
+import UnitSelector from "./components/unitSelector/UnitSelector";
 import Footer from "./components/footer/footer";
 
 const App = () => {
   const [fontLoaded, setFontLoaded] = useState(false); // state to check if font have loaded
   const [isCalled, setIsCalled] = useState<boolean>(false); // state to check if API has been called once
+  const [unitSystem, setUnitSystem] = useState<string>("Metric"); // state to check if API has been called once
 
   useEffect(() => {
     async function loadAssets() {
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
     <>
+      <UnitSelector isCalled={isCalled} setUnitSystem={setUnitSystem} />
       <Header fontLoaded={fontLoaded} />
       <div className="flex flex-col items-center justify-center h-full ">
         <MainInput
@@ -29,9 +31,9 @@ const App = () => {
           isCalled={isCalled}
           setIsCalled={setIsCalled}
         />
-        <MainOutpt isCalled={isCalled} />
+        <MainOutpt unitSystem={unitSystem} isCalled={isCalled} />
+        <WindGraph unitSystem={unitSystem} isCalled={isCalled} />
         <RainGraph isCalled={isCalled} />
-        <WindGraph isCalled={isCalled} />
 
         <Footer isCalled={isCalled} fontLoaded={fontLoaded} />
       </div>

@@ -5,6 +5,7 @@ import { WeatherData, Current, Location, Forecast } from "../types/weatherTypes"
 const initialState: WeatherData = {
   current: {
     temp_c: null,
+    temp_f: null,
     humidity: null,
     condition: {
       text: '',
@@ -20,7 +21,10 @@ const initialState: WeatherData = {
     lat: null,
   },
   forecast: {
-    forecastday: [{ date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, precip_mm:null, wind_kph:null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, precip_mm:null, wind_kph:null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, precip_mm:null, wind_kph:null  }] }],
+    forecastday: [
+      { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, percip_in:null, wind_kph:null, wind_mph:null }] }, 
+      { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, percip_in:null, wind_kph:null, wind_mph:null }] }, 
+      { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, percip_in:null, wind_kph:null, wind_mph:null }] }],
   },
 };
 

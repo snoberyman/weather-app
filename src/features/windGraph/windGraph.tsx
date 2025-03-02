@@ -6,11 +6,20 @@ import { ApexOptions } from "apexcharts";
 import { Tooltip } from "react-tooltip";
 import { ForecastDay, HourData } from "../../types/weatherTypes";
 
-function WindGraph({ isCalled }: { isCalled: boolean }) {
+function WindGraph({
+  isCalled,
+  unitSystem,
+}: {
+  isCalled: boolean;
+  unitSystem: string;
+}) {
   const weather = useSelector((state: RootState) => state.weather);
 
   const windData = weather.forecast.forecastday.map(
-    (day: ForecastDay) => day.hour.map((hour: HourData) => hour.wind_kph) // Get precipitation data for each hour
+    (day: ForecastDay) =>
+      day.hour.map((hour: HourData) =>
+        unitSystem === "Metric" ? hour.wind_kph : hour.wind_mph
+      ) // Get precipitation data for each hour
   );
 
   const dayData = {
@@ -46,7 +55,7 @@ function WindGraph({ isCalled }: { isCalled: boolean }) {
     },
     yaxis: {
       title: {
-        text: "wind speed in (km/h)",
+        text: `wind speed in ${unitSystem === "Metric" ? "(km/h)" : "(mph)"}`,
         style: {
           fontSize: "16px", // Set the title font size
           fontWeight: "normal",
@@ -138,7 +147,7 @@ function WindGraph({ isCalled }: { isCalled: boolean }) {
           height={350}
         />
         <button
-          className="bg-primary-blue text-white p-2 m-2 absolute top-6 max-sm:top-0 max-sm:text-xs rounded-md cursor-pointer text-sm text-left"
+          className="bg-primary-blue text-white p-2 m-2 absolute top-6 max-sm:top-0 max-sm:hidden  max-sm:text-xs rounded-md cursor-pointer text-sm text-left"
           data-tooltip-id="wind-info-tooltip"
           data-tooltip-content={tooltipContent}
           data-tooltip-place="bottom"
