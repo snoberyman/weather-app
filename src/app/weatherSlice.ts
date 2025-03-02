@@ -20,7 +20,7 @@ const initialState: WeatherData = {
     lat: null,
   },
   forecast: {
-    forecastday: [{ date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null }] }],
+    forecastday: [{ date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, precip_mm:null }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, precip_mm:null  }] }, { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, precip_mm:null  }] }],
   },
 };
 

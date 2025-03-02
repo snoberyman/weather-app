@@ -122,7 +122,7 @@ function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
     <div
       className={`${
         loaded ? "transform transition-all duration-500 ease-out" : ""
-      } bg-primary-orange rounded flex items-center shadow-sm shadow-black ${
+      } bg-primary-orange rounded flex items-center shadow-sm shadow-black mb-10 z-10 ${
         isCalled
           ? "sm:px-12 sm:py-8 md:py-8 md:px-20 flex max-sm:flex-col md:flex-row md:translate-y-0 lg:translate-y-0 max-sm:py-15 max-sm:px-15"
           : "md:translate-y-20 lg:translate-y-45 lg:py-15 lg:px-20 xl:py-18 xl:px-22 py-15 px-15 flex flex-col"
@@ -137,7 +137,7 @@ function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
       />
       <WeatherButton isValid={isValid} callAPI={callAPI} />
       <span
-        className={`text-red-900 mt-4 text-xs max-sm:max-w-[160px] w-50 text-center md:ml-4 absolute sm:w-full max-sm:bottom-4 ${
+        className={`text-red-900 mt-4 text-xs max-sm:max-w-[160px] w-50 text-center md:ml-4 absolute sm:w-full max-sm:bottom-4  ${
           isCalled ? " sm:bottom-2 sm:left-0" : " sm:bottom-10"
         }`}
       >

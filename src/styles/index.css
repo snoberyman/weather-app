@@ -18,6 +18,11 @@ body {
   background-color: var(--color-primary-charcoal);
 }
 
+.apexcharts-tooltip {
+  background: #f3f3f3;
+  color: #212d40;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

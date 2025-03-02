@@ -28,7 +28,7 @@ function InputField({
         type="text"
         value={inputValue}
         onChange={handleInputChange}
-        className={`text-primary-black bg-white border ${
+        className={`text-primary-black bg-white border cursor-text  ${
           isValid ? "border-primary-black" : "border-red-500"
         } p-2 rounded w-10vw sm:w-50 md:w-60 lg:w-70 text-sm focus:outline-none  ${
           isCalled ? "mb-0 mr-8 max-sm:mb-12 max-sm:mr-0" : "mb-12"

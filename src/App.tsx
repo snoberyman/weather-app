@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import Header from "./components/header/header";
 import MainInput from "./features/mainInput/mainInput";
 import MainOutpt from "./features/mainOutput/mainOutput";
+import RainGraph from "./features/rainGraph/rainGraph";
+
+import Footer from "./components/footer/footer";
 
 const App = () => {
   const [fontLoaded, setFontLoaded] = useState(false); // state to check if font have loaded
@@ -26,6 +29,9 @@ const App = () => {
           setIsCalled={setIsCalled}
         />
         <MainOutpt isCalled={isCalled} />
+        <RainGraph isCalled={isCalled} />
+
+        <Footer fontLoaded={fontLoaded} />
       </div>
     </>
   );

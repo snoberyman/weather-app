@@ -17,14 +17,14 @@ export interface Location {
   lat: number | null;
 }
 
-
-interface HourData {
+export interface HourData {
   // Define the structure of an hour object
   time: string;
   temp_c: number | null;
+  precip_mm: number | null;
 }
 
-interface ForecastDay {
+export interface ForecastDay {
   date: string;
   day: {
     avgtemp_c: number;
