@@ -4,6 +4,7 @@ import Header from "./components/header/header";
 import MainInput from "./features/mainInput/mainInput";
 import MainOutpt from "./features/mainOutput/mainOutput";
 import RainGraph from "./features/rainGraph/rainGraph";
+import WindGraph from "./features/windGraph/windGraph";
 
 import Footer from "./components/footer/footer";
 
@@ -30,8 +31,9 @@ const App = () => {
         />
         <MainOutpt isCalled={isCalled} />
         <RainGraph isCalled={isCalled} />
+        <WindGraph isCalled={isCalled} />
 
-        <Footer fontLoaded={fontLoaded} />
+        <Footer isCalled={isCalled} fontLoaded={fontLoaded} />
       </div>
     </>
   );

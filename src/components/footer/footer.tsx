@@ -1,4 +1,10 @@
-const Footer = ({ fontLoaded }: { fontLoaded: boolean }) => {
+const Footer = ({
+  fontLoaded,
+  isCalled,
+}: {
+  fontLoaded: boolean;
+  isCalled: boolean;
+}) => {
   if (!fontLoaded) {
     return (
       <div className="flex justify-center items-center w-[20px] m-auto h-[140px]">
@@ -8,7 +14,7 @@ const Footer = ({ fontLoaded }: { fontLoaded: boolean }) => {
   }
 
   return (
-    <div className="p-10 absolute bottom-2 w-full">
+    <div className={` ${isCalled ? "" : "fixed"}   p-10 bottom-2 w-full`}>
       <h3 className="text-center text-xs ">
         Powered by{" "}
         <a

@@ -22,6 +22,7 @@ export interface HourData {
   time: string;
   temp_c: number | null;
   precip_mm: number | null;
+  wind_kph: number | null;
 }
 
 export interface ForecastDay {
