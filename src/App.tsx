@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/header/header";
 import MainInput from "./features/mainInput/mainInput";
 import MainOutpt from "./features/mainOutput/mainOutput";
+import DayForecast from "./features/dayForecast/dayForecast";
 import RainGraph from "./features/rainGraph/rainGraph";
 import WindGraph from "./features/windGraph/windGraph";
 import UnitSelector from "./components/unitSelector/UnitSelector";
@@ -33,8 +34,8 @@ const App = () => {
         />
         <MainOutpt unitSystem={unitSystem} isCalled={isCalled} />
         <WindGraph unitSystem={unitSystem} isCalled={isCalled} />
-        <RainGraph isCalled={isCalled} />
-
+        <RainGraph unitSystem={unitSystem} isCalled={isCalled} />
+        <DayForecast unitSystem={unitSystem} isCalled={isCalled} />
         <Footer isCalled={isCalled} fontLoaded={fontLoaded} />
       </div>
     </>

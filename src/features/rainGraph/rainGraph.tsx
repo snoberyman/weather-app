@@ -6,13 +6,19 @@ import { ApexOptions } from "apexcharts";
 import { Tooltip } from "react-tooltip";
 import { ForecastDay, HourData } from "../../types/weatherTypes";
 
-function RainGraph({ isCalled }: { isCalled: boolean }) {
+function RainGraph({
+  isCalled,
+  unitSystem,
+}: {
+  isCalled: boolean;
+  unitSystem: string;
+}) {
   const weather = useSelector((state: RootState) => state.weather);
 
   const rainData = weather.forecast.forecastday.map((day: ForecastDay) =>
     day.hour.map((hour: HourData, index: number) => ({
       x: `${index}:00`, // Hour label
-      y: hour.precip_mm, // Rainfall value
+      y: unitSystem === "Metric" ? hour.precip_mm : hour.precip_in, // Rainfall value
     }))
   );
 
@@ -23,7 +29,9 @@ function RainGraph({ isCalled }: { isCalled: boolean }) {
       zoom: { enabled: false },
     },
     title: {
-      text: "Rainfall Heatmap Over Three Days",
+      text: `Rainfall Heatmap Over Three Days ${
+        unitSystem === "Metric" ? "(mm/hour)" : "(in/hour)"
+      }`,
       align: "center",
       style: { fontSize: "20px", fontWeight: "bold" },
     },
@@ -46,13 +54,52 @@ function RainGraph({ isCalled }: { isCalled: boolean }) {
       heatmap: {
         shadeIntensity: 0.5,
         colorScale: {
-          ranges: [
-            { from: 0, to: 2.5, color: "#B0E0E6", name: "Light Rain" }, // Light blue
-            { from: 2.6, to: 7.6, color: "#00A8FF", name: "Moderate Rain" }, // Blue
-            { from: 7.7, to: 50, color: "#FF5733", name: "Heavy Rain" }, // Orange
-            { from: 50.1, to: 100, color: "#C70039", name: "Very Heavy Rain" }, // Red
-            { from: 100.1, to: 500, color: "#900C3F", name: "Extreme Rain" }, // Dark Red
-          ],
+          ranges:
+            unitSystem === "Metric"
+              ? [
+                  { from: 0, to: 2.5, color: "#B0E0E6", name: "Light Rain" }, // Light blue
+                  {
+                    from: 2.6,
+                    to: 7.6,
+                    color: "#00A8FF",
+                    name: "Moderate Rain",
+                  }, // Blue
+                  { from: 7.7, to: 50, color: "#FF5733", name: "Heavy Rain" }, // Orange
+                  {
+                    from: 50.1,
+                    to: 100,
+                    color: "#C70039",
+                    name: "Very Heavy Rain",
+                  }, // Red
+                  {
+                    from: 100.1,
+                    to: 500,
+                    color: "#900C3F",
+                    name: "Extreme Rain",
+                  }, // Dark Red
+                ]
+              : [
+                  { from: 0, to: 0.1, color: "#B0E0E6", name: "Light Rain" }, // Light blue
+                  {
+                    from: 0.1,
+                    to: 0.3,
+                    color: "#00A8FF",
+                    name: "Moderate Rain",
+                  }, // Blue
+                  { from: 0.3, to: 1.97, color: "#FF5733", name: "Heavy Rain" }, // Orange
+                  {
+                    from: 1.97,
+                    to: 3.94,
+                    color: "#C70039",
+                    name: "Very Heavy Rain",
+                  }, // Red
+                  {
+                    from: 3.94,
+                    to: 19.69,
+                    color: "#900C3F",
+                    name: "Extreme Rain",
+                  }, // Dark Red
+                ],
         },
       },
     },

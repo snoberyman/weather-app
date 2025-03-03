@@ -24,7 +24,7 @@ export interface HourData {
   temp_c: number | null;
   temp_f: number | null;
   precip_mm: number | null;
-  percip_in: number | null;
+  precip_in: number | null;
   wind_kph: number | null;
   wind_mph: number | null;
 }
@@ -33,6 +33,11 @@ export interface ForecastDay {
   date: string;
   day: {
     avgtemp_c: number;
+    avgtemp_f: number;
+    condition: { // The current weather condition
+      text: string;
+      icon: string;
+    };
   };
   hour: HourData[]; // Array of 24 hour objects
 }

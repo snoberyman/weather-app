@@ -9,7 +9,7 @@ const WeatherBoxLarge = ({
 }) => {
   return (
     <>
-      <div className="bg-primary-rose border-1 border-white max-sm:text-md text-center text-lg/18  flex flex-row justify-around content-center">
+      <div className="bg-primary-rose border-1 border-white max-sm:text-md text-center text-lg/18  flex flex-row justify-around content-center pl-2">
         {text ? (
           <span className=" text-center overflow-hidden whitespace-nowrap font-semibold">
             {text}

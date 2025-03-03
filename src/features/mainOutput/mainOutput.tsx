@@ -19,10 +19,11 @@ const MainOutput = ({
   const date = dateTime[0];
   let time = dateTime[1] || "00:00"; // set default time to 00:00
 
-  const [hour, minute] = time.split(":").map(Number); // get hour and minute
-  const period = hour >= 12 ? "PM" : "AM"; // set AM or PM
-  const formattedHour = hour % 12 || 12; // Convert 0 to 12
-  time = `${formattedHour}:${minute} ${period}`;
+  const [hour, minute] = time.split(":").map(Number); // Get hour and minute
+  const period = hour >= 12 ? "PM" : "AM"; // Set AM or PM
+  const formattedHour = String(hour % 12 || 12).padStart(2, "0"); // Convert 0 to 12 and ensure two digits
+  const formattedMinute = String(minute).padStart(2, "0"); // Ensure two digits for minutes
+  time = `${formattedHour}:${formattedMinute} ${period}`;
 
   return (
     <WeatherBoxMain isCalled={isCalled}>

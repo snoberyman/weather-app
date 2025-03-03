@@ -22,17 +22,16 @@ const initialState: WeatherData = {
   },
   forecast: {
     forecastday: [
-      { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, percip_in:null, wind_kph:null, wind_mph:null }] }, 
-      { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, percip_in:null, wind_kph:null, wind_mph:null }] }, 
-      { date: '', day: { avgtemp_c: 0 }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, percip_in:null, wind_kph:null, wind_mph:null }] }],
+      { date: '', day: { avgtemp_c: 0 , avgtemp_f: 0, condition: {text: '',icon: '',} }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, precip_in:null, wind_kph:null, wind_mph:null }] }, 
+      { date: '', day: { avgtemp_c: 0 , avgtemp_f: 0, condition: {text: '',icon: '',} }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, precip_in:null, wind_kph:null, wind_mph:null }] }, 
+      { date: '', day: { avgtemp_c: 0 , avgtemp_f: 0, condition: {text: '',icon: '',} }, hour: [{ time: '', temp_c: null, temp_f:null, precip_mm:null, precip_in:null, wind_kph:null, wind_mph:null }] }],
   },
 };
 
-// Create the slice
-const weatherSlice = createSlice({
+const weatherSlice = createSlice({ // Create a slice  for the weather data 
   name: "weather",
   initialState,
-  reducers: {
+  reducers: { // Define reducers  to update the state
     setCurrent: (state, action: PayloadAction<Current>) => {
       state.current = action.payload;
     },
