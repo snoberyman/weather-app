@@ -58,6 +58,8 @@ function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
   const callAPI = async () => {
     setIsButtonClicked(true); // Set button clicked to true
     if (inputValue.trim() === "") {
+      setIsValid(false);
+      setIsButtonClicked(false);
       // If input is empty, show tooltip, and do not call API
       return;
     }
@@ -128,17 +130,13 @@ function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
         isButtonClicked={isButtonClicked}
       />
       <WeatherButton isValid={isValid} callAPI={callAPI} />
-      {isButtonClicked ? (
+      {isButtonClicked && isValid ? (
         <div
           className={`items-center w-[20px] m-auto h-[20px] absolute  ${
             isCalled ? "mt-2 sm:ml-4 bottom-10 sm:right-10" : "mt-5 bottom-4"
           }`}
         >
-          <img
-            src="src\assets\Loading_icon.gif"
-            alt=""
-            className="self-center"
-          />
+          <img src="/Loading_icon.gif" alt="" className="self-center" />
         </div>
       ) : (
         ""
