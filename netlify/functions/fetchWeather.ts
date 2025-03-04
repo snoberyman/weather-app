@@ -6,7 +6,7 @@ export const handler: Handler = async (event) => {
   const origin = event.headers.origin || ""; // Get request origin
   const allowedOrigins = [
     "http://localhost:5173", // Local Dev
-    "" // Production
+    "https://live-weather-api-calls.netlify.app/" // Production" // Production
   ];
 
 
