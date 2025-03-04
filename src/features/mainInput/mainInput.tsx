@@ -128,6 +128,21 @@ function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
         isButtonClicked={isButtonClicked}
       />
       <WeatherButton isValid={isValid} callAPI={callAPI} />
+      {isButtonClicked ? (
+        <div
+          className={`items-center w-[20px] m-auto h-[20px] absolute  ${
+            isCalled ? "mt-2 sm:ml-4 bottom-10 sm:right-10" : "mt-5 bottom-4"
+          }`}
+        >
+          <img
+            src="src\assets\Loading_icon.gif"
+            alt=""
+            className="self-center"
+          />
+        </div>
+      ) : (
+        ""
+      )}
       <span
         className={`text-red-900 mt-4 text-xs max-sm:max-w-[160px] w-50 text-center md:ml-4 absolute sm:w-full max-sm:bottom-4  ${
           isCalled ? " sm:bottom-2 sm:left-0" : " sm:bottom-10"
