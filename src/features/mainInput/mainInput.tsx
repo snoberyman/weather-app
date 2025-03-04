@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCurrent, setLocation, setForecast } from "../../app/weatherSlice"; // import weather redux slice
 import { WeatherData } from "../../types/weatherTypes"; // Import the weather data interface (types)
-import axios from "axios";
+
+import { fetchWeatherData } from "../../services/weatherService"; // Import the new service function
 
 import InputField from "../../components/weatherInput/inputField";
 import WeatherButton from "../../components/weatherInput/weatherButton";
@@ -14,15 +15,14 @@ interface MainInputProps {
 }
 
 function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
-  const weatherAPI = import.meta.env.VITE_WEATHER_URL;
-  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const dispatch = useDispatch();
 
   const [loaded, setLoaded] = useState<boolean>(false); // sates to wait for fonts to be loaded before enabling transition
   const [inputValue, setInputValue] = useState<string>(""); // state to capture input field value
   const [isValid, setIsValid] = useState<boolean>(true); // state to track input validity
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false); // state to track button clicks
-  const [isError, setIsError] = useState<boolean>(false); // state to track button clicks
+  const [isError, setIsError] = useState<boolean>(false); // state to track the error state
+  const [errorMessage, setErrorMessage] = useState(""); // state to store error message
 
   useEffect(() => {
     if (fontLoaded) {
@@ -63,50 +63,41 @@ function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
     }
     // Fetch weather data from the API
     try {
-      await axios
-        .get<WeatherData>(`${weatherAPI}/forecast.json`, {
-          params: {
-            key: apiKey,
-            q: inputValue,
-            days: 3,
+      const weatherData: WeatherData = await fetchWeatherData(inputValue); // use fetchWeatherData service function
+      const { current, location, forecast } = weatherData;
+
+      setIsCalled(true); // Set API called state to true
+      setIsError(false); // Reset error state
+
+      // Dispatch the current weather data to redux store
+      dispatch(
+        setCurrent({
+          temp_c: current.temp_c,
+          temp_f: current.temp_f,
+          humidity: current.humidity,
+          condition: {
+            text: current.condition.text,
+            icon: current.condition.icon,
           },
         })
-        .then((response) => {
-          setIsCalled(true); // Set API called state to true
-          setIsError(false); // Reset error state
-          console.log(response.data);
-          const { current, location, forecast } = response.data;
-
-          // Dispatch the current weather data to redux store
-          dispatch(
-            setCurrent({
-              temp_c: current.temp_c,
-              temp_f: current.temp_f,
-              humidity: current.humidity,
-              condition: {
-                text: current.condition.text,
-                icon: current.condition.icon,
-              },
-            })
-          );
-          // Dispatch the location data to redux store
-          dispatch(
-            setLocation({
-              name: location.name,
-              country: location.country,
-              region: location.region,
-              localtime: location.localtime,
-              lon: location.lon,
-              lat: location.lat,
-            })
-          );
-          // Dispatch the forecast data (next 3 days) to redux store
-          dispatch(setForecast({ forecastday: forecast.forecastday }));
-        });
+      );
+      // Dispatch the location data to redux store
+      dispatch(
+        setLocation({
+          name: location.name,
+          country: location.country,
+          region: location.region,
+          localtime: location.localtime,
+          lon: location.lon,
+          lat: location.lat,
+        })
+      );
+      // Dispatch the forecast data (next 3 days) to redux store
+      dispatch(setForecast({ forecastday: forecast.forecastday }));
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response?.status === 400) {
-        // Handle specific error case
+      if (error instanceof Error) {
         setIsError(true);
+        setErrorMessage(error.message);
       }
       // console.error("Error fetching weather data:", error);
     } finally {
@@ -142,7 +133,7 @@ function MainInput({ fontLoaded, isCalled, setIsCalled }: MainInputProps) {
           isCalled ? " sm:bottom-2 sm:left-0" : " sm:bottom-10"
         }`}
       >
-        {isError ? "Something went wrong. \n Please enter a valid input." : ""}
+        {isError ? errorMessage : ""}
       </span>
     </div>
   );
