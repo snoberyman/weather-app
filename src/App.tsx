@@ -36,8 +36,8 @@ const App = () => {
         <WindGraph unitSystem={unitSystem} isCalled={isCalled} />
         <RainGraph unitSystem={unitSystem} isCalled={isCalled} />
         <DayForecast unitSystem={unitSystem} isCalled={isCalled} />
-        <Footer isCalled={isCalled} fontLoaded={fontLoaded} />
       </div>
+      <Footer isCalled={isCalled} fontLoaded={fontLoaded} />
     </>
   );
 };

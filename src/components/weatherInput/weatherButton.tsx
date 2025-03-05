@@ -10,7 +10,7 @@ function WeatherButton({ isValid, callAPI }: WeatherButtonProps) {
       onClick={callAPI}
       className={`${
         isValid
-          ? " cursor-pointer bg-primary-blue  hover:bg-primary-rose hover:shadow-md"
+          ? " cursor-pointer bg-primary-blue  hover:bg-primary-sienna hover:shadow-md"
           : "bg-gray-600 cursor-not-allowed"
       } text-white py-1 px-8 rounded text-m`}
     >

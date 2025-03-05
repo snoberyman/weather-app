@@ -19,6 +19,7 @@
 
 ## Features
 
+- **Uses [WeatherAPI](https://www.weatherapi.com/)**: Fetches real-time weather data from WeatherAPI.
 - **Input field validation and error handling**: Ensures users provide valid input, with appropriate error messages displayed if necessary.
 - **Windspeed area chart**: Visualizes wind speed trends data over the next few days.
 - **Rainfall heat-map**: Displays a dynamic heat map to represent precipitation over three days.

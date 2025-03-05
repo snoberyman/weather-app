@@ -8,10 +8,12 @@ const Header = ({ fontLoaded }: { fontLoaded: boolean }) => {
   }
 
   return (
-    <div className="p-10">
+    <div className="p-10 max-sm:p-5 max-sm:">
       <a href="https://live-weather-api-calls.netlify.app/">
-        <h1 className="text-center text-3xl">Live Weather</h1>
-        <h3 className="text-center text-m">Real-Time Weather Information</h3>
+        <h1 className="text-center text-3xl max-sm:text-xl ">Live Weather</h1>
+        <h3 className="text-center text-m max-sm:text-sm">
+          Real-Time Weather Information
+        </h3>
       </a>
     </div>
   );
