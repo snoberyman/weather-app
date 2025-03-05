@@ -45,7 +45,7 @@ const MainOutput = ({
           </div>
         </div>
         {/* Main weather info */}
-        <div className=" items-start grid xl:grid-cols-[1fr_2fr_2fr] gap-20 col-start-1 row-start-2 ">
+        <div className=" items-start grid xl:grid-cols-[1fr_2fr_2fr] gap-20  max-xl:gap-10 col-start-1 row-start-2 ">
           <div className="flex flex-col ">
             <WeatherBoxSmall
               title={"Current temp."}
@@ -67,7 +67,7 @@ const MainOutput = ({
           </div>
         </div>
         {/* Hourly temperature Info */}
-        <div className="grid grid-cols-2 xl:grid-cols-4  gap-20 col-start-1 row-start-3 ">
+        <div className="grid grid-cols-2 xl:grid-cols-4  gap-20  max-xl:gap-10 col-start-1 row-start-3 ">
           <div className="flex flex-col">
             <WeatherBoxSmall
               title={"Temp @ 06 AM"}

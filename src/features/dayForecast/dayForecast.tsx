@@ -23,7 +23,7 @@ const DayForecast = ({
         {/* Column 1 (Forecast Day 2) */}
         <div className="flex flex-col items-center justify-center text-center">
           {/* Date at the top */}
-          <h2 className="text-lg max-sm:text-sm">{forecastDay2.date}</h2>
+          <h2 className="text-lg max-sm:text-sm mb-3">{forecastDay2.date}</h2>
           {/* Weather info at the bottom */}
           <div className="flex flex-row justify-center items-center gap-4">
             <WeatherBoxSmall
@@ -44,7 +44,7 @@ const DayForecast = ({
         {/* Column 2 (Forecast Day 3) */}
         <div className="flex flex-col items-center justify-center text-center">
           {/* Date at the top */}
-          <h2 className="text-lg max-sm:text-sm">{forecastDay3.date}</h2>
+          <h2 className="text-lg max-sm:text-sm mb-3">{forecastDay3.date}</h2>
 
           {/* Weather info at the bottom (side by side) */}
           <div className="flex flex-row justify-center items-center gap-4">
