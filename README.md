@@ -1,6 +1,7 @@
 # Live Weather
 
-### Real-Time Weather Information
+### Live Weather Information
+Fetch weather data from WeatherAPI by passing city name or postal code. Temperature, wind speed, and rainfall data are extracted from the response. The website is hosted on Netlify. 
 
 [Live Link](https://live-weather-api-calls.netlify.app/) - View the live website here.
 
